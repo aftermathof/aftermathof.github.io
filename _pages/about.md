@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-# Education
+## Education
 
 **B.S. in Finance**, Nankai University (NKU)
   *2022 — 2026*
