@@ -1,3 +1,8 @@
+{% comment %}
+阅读时间组件已禁用。
+原逻辑被完整保留在注释中，便于日后需要时恢复。
+
+原逻辑：
 {% if post.read_time %}
   {% assign words = post.content | strip_html | number_of_words %}
 {% elsif page.read_time %}
@@ -15,3 +20,4 @@
 {% else %}
   {{ site.data.ui-text[site.locale].undefined_wpm | "Undefined parameter words_per_minute at _config.yml" }}
 {% endif %}
+{% endcomment %}
