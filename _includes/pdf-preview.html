@@ -1,0 +1,35 @@
+{% assign pdf_file = include.file | default: '' %}
+{% assign pdf_title = include.title | default: '' %}
+{% assign pdf_height = include.height | default: '420px' %}
+
+{% if pdf_file == '' %}
+  <p class="pdf-preview-error">PDF 文件未指定，请在 include 中传入 file 参数。</p>
+{% else %}
+  {% assign pdf_url = 'files/' | append: pdf_file | relative_url %}
+  <div class="pdf-preview-container">
+    {% if pdf_title != '' %}
+      <div class="pdf-preview-title">{{ pdf_title }}</div>
+    {% endif %}
+
+    <div class="pdf-preview-frame-wrapper">
+      <iframe
+        src="{{ pdf_url }}"
+        width="100%"
+        height="{{ pdf_height }}"
+        style="border: 1px solid #ddd; border-radius: 4px;"
+      >
+        您的浏览器不支持内嵌 PDF 预览。您可以使用下方链接直接打开或下载该文件。
+      </iframe>
+    </div>
+
+    <div class="pdf-preview-actions">
+      <a href="{{ pdf_url }}" target="_blank" rel="noopener">
+        在新标签中打开完整 PDF
+      </a>
+      <a href="{{ pdf_url }}" download style="margin-left: 1rem;">
+        下载 PDF 文件
+      </a>
+    </div>
+  </div>
+{% endif %}
+
