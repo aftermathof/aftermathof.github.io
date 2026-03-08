@@ -7,15 +7,98 @@ author_profile: true
 
 {% include base_path %}
 
+<style>
+  .tags-index__list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tags-index__item {
+    margin: 0;
+  }
+
+  .tags-index__link {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    background-color: #0056b3; /* 深一点的蓝色 */
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .tags-index__link:hover,
+  .tags-index__link:focus {
+    background-color: #003f80;
+    text-decoration: none;
+    color: #ffffff;
+  }
+
+  .tag-posts {
+    margin-top: 2rem;
+  }
+</style>
+
 {% assign all_tags = site.tags | sort %}
 
-{% for tag in all_tags %}
-  {% assign tag_name = tag[0] %}
-  <h2 id="{{ tag_name | slugify }}" class="archive__subtitle">{{ tag_name }}</h2>
+<div class="tags-index">
+  <p>选择一个标签查看对应的博客：</p>
+  <ul class="tags-index__list">
+    {% for tag in all_tags %}
+      {% assign tag_name = tag[0] %}
+      <li class="tags-index__item">
+        <a href="#{{ tag_name | slugify }}" class="tags-index__link" data-tag="{{ tag_name | slugify }}">
+          {{ tag_name }} ({{ tag[1].size }})
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
 
-  {% assign posts_for_tag = tag[1] %}
-  {% for post in posts_for_tag %}
-    {% include archive-single.html %}
+<div class="tags-posts">
+  {% for tag in all_tags %}
+    {% assign tag_name = tag[0] %}
+    {% assign posts_for_tag = tag[1] %}
+    <section id="{{ tag_name | slugify }}" class="tag-posts" data-tag="{{ tag_name | slugify }}" style="display:none;">
+      <h2 class="archive__subtitle">{{ tag_name }}</h2>
+      {% for post in posts_for_tag %}
+        {% include archive-single.html %}
+      {% endfor %}
+    </section>
   {% endfor %}
-{% endfor %}
+</div>
+
+<script>
+  (function() {
+    function showTagFromHash() {
+      var hash = window.location.hash ? window.location.hash.substring(1) : "";
+      var sections = document.querySelectorAll(".tag-posts");
+      if (!sections) return;
+
+      sections.forEach(function(section) {
+        section.style.display = "none";
+      });
+
+      if (!hash) {
+        return;
+      }
+
+      var target = document.querySelector('.tag-posts[id="' + hash + '"]');
+      if (target) {
+        target.style.display = "block";
+        var archive = document.querySelector(".archive");
+        if (archive) {
+          var top = archive.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({ top: top, behavior: "smooth" });
+        }
+      }
+    }
+
+    window.addEventListener("load", showTagFromHash);
+    window.addEventListener("hashchange", showTagFromHash);
+  })();
+</script>
 
