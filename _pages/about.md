@@ -9,9 +9,8 @@ redirect_from:
 
 ## Education
 
-**B.S. in Finance**, Nankai University (NKU)
-  , *2022 — 2026*
+**B.S. in Finance**, Nankai University, *2022 — 2026*
   
-**M.Sc. in Data Science**, The Chinese University of Hong Kong, Shenzhen (CUHK-Shenzhen),   *2026 — 2028 (Planned)*
+**M.Sc. in Data Science**, The Chinese University of Hong Kong, Shenzhen,   *2026 — 2028 (Planned)*
 
 Feel free to reach out for discussions and connection！
