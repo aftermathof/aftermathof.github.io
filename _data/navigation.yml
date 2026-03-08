@@ -9,6 +9,6 @@
 
 main:     
   - title: "Blog Posts"
-    url: /blog_posts/
+    url: /posts/
   - title: "Tags"
     url: /tags/
