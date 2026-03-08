@@ -1,0 +1,21 @@
+---
+layout: archive
+permalink: /tags/
+title: "Tags"
+author_profile: true
+---
+
+{% include base_path %}
+
+{% assign all_tags = site.tags | sort %}
+
+{% for tag in all_tags %}
+  {% assign tag_name = tag[0] %}
+  <h2 id="{{ tag_name | slugify }}" class="archive__subtitle">{{ tag_name }}</h2>
+
+  {% assign posts_for_tag = tag[1] %}
+  {% for post in posts_for_tag %}
+    {% include archive-single.html %}
+  {% endfor %}
+{% endfor %}
+
