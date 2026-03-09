@@ -1,11 +1,13 @@
 ---
 permalink: /
-title: "Welcome to my personal website"
+title: "aftermathof's website - home"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
+
+# Welcome to my personal website
 
 ## Education
 
